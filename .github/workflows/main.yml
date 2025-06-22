@@ -48,5 +48,5 @@ jobs:
           git config --global user.email "owen190401@gmail.com"
           git remote set-url origin https://x-access-token:${{ secrets.TOKEN }}@github.com/Michael-Owen-19/Eksperimen_SML_Michael-Owen.git
           git add .
-          git commit -m "Save mlruns"
+          git commit -m "Save mlruns from CI runs"
           git push
