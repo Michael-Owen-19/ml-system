@@ -1,0 +1,14 @@
+artifact_uri: file:///home/runner/work/ml-system/ml-system/mlruns/0/4f18b0d7948840c1b5ed1eb684e1c972/artifacts
+end_time: 1750600287607
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 4f18b0d7948840c1b5ed1eb684e1c972
+run_name: awesome-mouse-477
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1750600279066
+status: 3
+tags: []
+user_id: runner
