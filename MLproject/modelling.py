@@ -37,45 +37,35 @@ if __name__ == "__main__":
         # === Extract transformers correctly ===
         _, int_transformer, int_cols = preprocessor.transformers_[0]
         _, float_transformer, float_cols = preprocessor.transformers_[1]
-        _, special_transformer, special_cols = preprocessor.transformers_[2]
-        _, cat_transformer, cat_cols = preprocessor.transformers_[3]
+        _, cat_transformer, cat_cols = preprocessor.transformers_[2]
 
         # === Get the internal scalers and encoder ===
         int_scaler = int_transformer.named_steps['scaler']
         float_scaler = float_transformer.named_steps['scaler']
-        special_scaler = special_transformer.named_steps['scaler']
         ohe = cat_transformer.named_steps['encoder']
 
         # === Split the transformed data into each block ===
         int_end = len(int_cols)
         float_end = int_end + len(float_cols)
-        special_end = float_end + len(special_cols)
 
         int_data = transformed_data[:, :int_end]
         float_data = transformed_data[:, int_end:float_end]
-        special_data = transformed_data[:, float_end:special_end]
-        cat_data = transformed_data[:, special_end:]
+        cat_data = transformed_data[:, float_end:]
 
         # === Inverse transforms ===
         int_orig = int_scaler.inverse_transform(int_data)
         float_orig = float_scaler.inverse_transform(float_data)
-        special_orig = special_scaler.inverse_transform(special_data)
         cat_orig = ohe.inverse_transform(cat_data)
 
         # === Rebuild DataFrame ===
         df_int = pd.DataFrame(int_orig, columns=int_cols)
         df_float = pd.DataFrame(float_orig, columns=float_cols)
-        df_special = pd.DataFrame(special_orig, columns=special_cols)
         df_cat = pd.DataFrame(cat_orig, columns=cat_cols)
 
         # Combine all parts
-        df_reconstructed = pd.concat([df_int, df_float, df_special, df_cat], axis=1)
+        df_reconstructed = pd.concat([df_int, df_float, df_cat], axis=1)
         return df_reconstructed
 
-    def mark_0_as_nan(X):
-            X = X.copy()
-            X[(X == 0) | (pd.isna(X))] = np.nan
-            return X
     preprocess_pipeline_path = os.path.join(script_dir, 'dataset_preprocessing', 'preprocessor_pipeline.joblib')
     preprocessor = load(preprocess_pipeline_path)
     inversed_data = inverse_transform_data(X_train, preprocess_pipeline_path)
