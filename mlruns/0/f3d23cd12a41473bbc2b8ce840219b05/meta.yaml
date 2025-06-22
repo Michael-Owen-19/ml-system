@@ -1,0 +1,14 @@
+artifact_uri: file:///home/runner/work/ml-system/ml-system/mlruns/0/f3d23cd12a41473bbc2b8ce840219b05/artifacts
+end_time: 1750599883531
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: f3d23cd12a41473bbc2b8ce840219b05
+run_name: resilient-fish-566
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1750599874734
+status: 3
+tags: []
+user_id: runner
