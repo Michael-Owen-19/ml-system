@@ -14,12 +14,12 @@ if __name__ == "__main__":
     np.random.seed(40)
 
     script_dir = os.path.dirname(os.path.abspath(__file__))
-    X_train = load(os.path.join(script_dir, 'dataset_preprocessing', 'X_train.joblib'))
-    X_test = load(os.path.join(script_dir, 'dataset_preprocessing', 'X_test.joblib'))
-    y_train = load(os.path.join(script_dir, 'dataset_preprocessing', 'y_train.joblib'))
-    y_train = y_train.to_numpy()
-    y_test = load(os.path.join(script_dir, 'dataset_preprocessing', 'y_test.joblib'))
-    y_test = y_test.to_numpy()
+    X_train = pd.read_csv(os.path.join(script_dir, 'dataset_preprocessing', 'X_train.csv'))
+    X_test = pd.read_csv(os.path.join(script_dir, 'dataset_preprocessing', 'X_test.csv'))
+    y_train = pd.read_csv(os.path.join(script_dir, 'dataset_preprocessing', 'y_train.csv'))
+    y_train = y_train.to_numpy().ravel()  # Convert to
+    y_test = pd.read_csv(os.path.join(script_dir, 'dataset_preprocessing', 'y_test.csv'))
+    y_test = y_test.to_numpy().ravel()  # Convert to 1D array
     n_estimators = int(sys.argv[1]) if len(sys.argv) > 1 else 505
     max_depth = int(sys.argv[2]) if len(sys.argv) > 2 else 37
 
@@ -66,11 +66,11 @@ if __name__ == "__main__":
         df_reconstructed = pd.concat([df_int, df_float, df_cat], axis=1)
         return df_reconstructed
 
-    preprocess_pipeline_path = os.path.join(script_dir, 'dataset_preprocessing', 'preprocessor_pipeline.joblib')
-    preprocessor = load(preprocess_pipeline_path)
-    inversed_data = inverse_transform_data(X_train, preprocess_pipeline_path)
+    # preprocess_pipeline_path = os.path.join(script_dir, 'dataset_preprocessing', 'preprocessor_pipeline.joblib')
+    # preprocessor = load(preprocess_pipeline_path)
+    # inversed_data = inverse_transform_data(X_train, preprocess_pipeline_path)
 
-    input_example = inversed_data.sample(n=5, random_state=random.randint(0, 1000))
+    # input_example = inversed_data.sample(n=5, random_state=random.randint(0, 1000))
     with mlflow.start_run():
         mlflow.autolog()
         # Train model
