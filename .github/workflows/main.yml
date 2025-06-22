@@ -37,6 +37,15 @@ jobs:
       - name: Run mlflow project
         run: |
           mlflow run MLproject --env-manager=local 
+
+      - name: Save mlruns to repo
+        run: |
+          git config --global user.name "Michael Owen"
+          git config --global user.email "owen190401@gmail.com"
+          git remote set-url origin https://x-access-token:${{ secrets.TOKEN }}@github.com/Michael-Owen-19/ml-system.git
+          git add .
+          git commit -m "Save mlruns from CI runs"
+          git push
           
       - name: Get latest MLflow run_id
         run: |
@@ -60,13 +69,4 @@ jobs:
 
       - name: Push Docker Image
         run: |
-          docker push ${{ secrets.DOCKER_HUB_USERNAME }}/cc:latest
-          
-      - name: Save mlruns to repo
-        run: |
-          git config --global user.name "Michael Owen"
-          git config --global user.email "owen190401@gmail.com"
-          git remote set-url origin https://x-access-token:${{ secrets.TOKEN }}@github.com/Michael-Owen-19/ml-system.git
-          git add .
-          git commit -m "Save mlruns from CI runs"
-          git push
+          docker push ${{ secrets.DOCKER_HUB_USERNAME }}/cc:latest     
