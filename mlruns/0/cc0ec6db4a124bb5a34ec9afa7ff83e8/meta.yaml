@@ -1,0 +1,14 @@
+artifact_uri: file:///home/runner/work/ml-system/ml-system/mlruns/0/cc0ec6db4a124bb5a34ec9afa7ff83e8/artifacts
+end_time: 1750599013327
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: cc0ec6db4a124bb5a34ec9afa7ff83e8
+run_name: industrious-rook-317
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1750599005146
+status: 3
+tags: []
+user_id: runner

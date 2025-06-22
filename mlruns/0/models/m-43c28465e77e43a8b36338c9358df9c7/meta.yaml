@@ -1,0 +1,10 @@
+artifact_location: file:///home/runner/work/ml-system/ml-system/mlruns/0/models/m-43c28465e77e43a8b36338c9358df9c7/artifacts
+creation_timestamp: 1750599007521
+experiment_id: '0'
+last_updated_timestamp: 1750599009788
+model_id: m-43c28465e77e43a8b36338c9358df9c7
+model_type: null
+name: model
+source_run_id: cc0ec6db4a124bb5a34ec9afa7ff83e8
+status: 2
+status_message: null
