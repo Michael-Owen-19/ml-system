@@ -47,9 +47,9 @@ jobs:
           git commit -m "Save mlruns from CI runs"
           git push
           
-      - name: Get latest MLflow run_id
+      - name: Get latest MLflow run ID
         run: |
-          RUN_ID=$(ls -td mlruns/0/*/ | head -n 1 | cut -d'/' -f3)
+          RUN_ID=$(find mlruns/0 -maxdepth 1 -mindepth 1 -type d -printf "%f\n" | grep -v models | sort -r | head -n 1)
           echo "RUN_ID=$RUN_ID" >> $GITHUB_ENV
           echo "Latest run_id: $RUN_ID"
           
